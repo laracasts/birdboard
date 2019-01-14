@@ -44,6 +44,18 @@ class ManageProjectsTest extends TestCase
 
         $this->get('/projects')->assertSee($attributes['title']);
     }
+    
+    /** @test */
+    public function a_user_can_only_list_their_projects()
+    {
+        $this->signIn();
+
+        $own_project = factory('App\Project')->create(['owner_id' => auth()->id()]);
+        $others_project = factory('App\Project')->create();
+
+        $this->get('/projects')->assertSee($own_project->title);
+        $this->get('/projects')->assertDontSee($others_project->title);
+    }
 
     /** @test */
     public function a_user_can_view_their_project()
