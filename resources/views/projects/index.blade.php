@@ -1,7 +1,7 @@
 @extends ('layouts.app')
 
 @section('content')
-    <header class="flex items-center mb-3 py-4">
+    <header class="flex items-center mb-3 pb-4">
         <div class="flex justify-between items-end w-full">
             <h2 class="text-grey text-sm font-normal">My Projects</h2>
 
