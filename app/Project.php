@@ -55,6 +55,19 @@ class Project extends Model
     }
 
     /**
+     * Record activity for a project.
+     *
+     * @param string $type
+     */
+    public function recordActivity($type)
+    {
+        Activity::create([
+            'project_id' => $this->id,
+            'description' => $type
+        ]);
+    }
+
+    /**
      * The activity feed for the project.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
