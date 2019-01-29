@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+    use RecordsActivity;
+
     /**
      * Attributes to guard against mass assignment.
      *
@@ -29,17 +31,12 @@ class Task extends Model
         'completed' => 'boolean'
     ];
 
-    /**
-     * Boot the model.
+    /*
+     * Get the model events that should trigger activity recording.
+     *
+     * @var array
      */
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::created(function ($task) {
-            $task->project->recordActivity('created_task');
-        });
-    }
+    protected static $modelEventsToRecord = ['created', 'deleted'];
 
     /**
      * Mark the task as complete.
@@ -77,5 +74,15 @@ class Task extends Model
     public function path()
     {
         return "/projects/{$this->project->id}/tasks/{$this->id}";
+    }
+
+    /**
+     * Get the subject for the activity recording.
+     *
+     * @return $this
+     */
+    protected function activitySubject()
+    {
+        return $this->project;
     }
 }
