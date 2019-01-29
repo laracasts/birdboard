@@ -52,6 +52,14 @@ class Task extends Model
     }
 
     /**
+     * Mark the task as incomplete.
+     */
+    public function incomplete()
+    {
+        $this->update(['completed' => false]);
+    }
+
+    /**
      * Get the owning project.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

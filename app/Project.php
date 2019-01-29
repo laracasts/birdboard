@@ -57,14 +57,11 @@ class Project extends Model
     /**
      * Record activity for a project.
      *
-     * @param string $type
+     * @param string $description
      */
-    public function recordActivity($type)
+    public function recordActivity($description)
     {
-        Activity::create([
-            'project_id' => $this->id,
-            'description' => $type
-        ]);
+        $this->activity()->create(compact('description'));
     }
 
     /**
