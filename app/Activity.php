@@ -12,4 +12,9 @@ class Activity extends Model
      * @var array
      */
     protected $guarded = [];
+
+    public function subject()
+    {
+        return $this->morphTo();
+    }
 }
