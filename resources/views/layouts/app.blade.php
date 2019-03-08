@@ -56,7 +56,7 @@
                                     >
                                         <img width="50"
                                              class="rounded-full"
-                                             src="https://www.gravatar.com/avatar/{{ md5(auth()->user()->email) }}?s=200">
+                                             src="{{ gravatar_url(auth()->user()->email) }}">
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
