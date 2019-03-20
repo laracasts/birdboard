@@ -81,6 +81,10 @@
             <div class="lg:w-1/4 px-3 lg:py-8">
                 @include ('projects.card')
                 @include ('projects.activity.card')
+
+                @can ('manage', $project)
+                    @include ('projects.invite')
+                @endcan
             </div>
         </div>
     </main>
