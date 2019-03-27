@@ -2,7 +2,7 @@
 
 @section('content')
     <form method="POST" action="{{ route('register') }}"
-          class="lg:w-1/2 lg:mx-auto bg-white py-12 px-16 rounded shadow"
+          class="lg:w-1/2 lg:mx-auto bg-card py-12 px-16 rounded shadow"
     >
         @csrf
 
@@ -14,7 +14,7 @@
             <div class="control">
                 <input id="name"
                        type="text"
-                       class="input bg-transparent border border-grey-light rounded p-2 text-xs w-full{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                       class="input bg-transparent border border-muted-light rounded p-2 text-xs w-full{{ $errors->has('name') ? ' is-invalid' : '' }}"
                        name="name"
                        value="{{ old('name') }}"
                        required
@@ -28,7 +28,7 @@
             <div class="control">
                 <input id="email"
                        type="email"
-                       class="input bg-transparent border border-grey-light rounded p-2 text-xs w-full{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                       class="input bg-transparent border border-muted-light rounded p-2 text-xs w-full{{ $errors->has('email') ? ' is-invalid' : '' }}"
                        name="email"
                        value="{{ old('email') }}"
                        required>
@@ -41,7 +41,7 @@
             <div class="control">
                 <input id="password"
                        type="password"
-                       class="input bg-transparent border border-grey-light rounded p-2 text-xs w-full{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                       class="input bg-transparent border border-muted-light rounded p-2 text-xs w-full{{ $errors->has('password') ? ' is-invalid' : '' }}"
                        name="password"
                        required>
             </div>
@@ -53,7 +53,7 @@
             <div class="control">
                 <input id="password-confirmation"
                        type="password"
-                       class="input bg-transparent border border-grey-light rounded p-2 text-xs w-full"
+                       class="input bg-transparent border border-muted-light rounded p-2 text-xs w-full"
                        name="password_confirmation"
                        required>
             </div>
