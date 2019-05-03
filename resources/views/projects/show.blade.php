@@ -21,7 +21,7 @@
                     alt="{{ $project->owner->name }}'s avatar"
                     class="rounded-full w-8 mr-2">
 
-                <a href="{{ $project->path().'/edit' }}" class="button ml-4">Edit Project</a>
+                <a href="{{ $project->path('edit') }}" class="button ml-4">Edit Project</a>
             </div>
         </div>
     </header>
@@ -48,7 +48,7 @@
                     @endforeach
 
                     <div class="card mb-3">
-                        <form action="{{ $project->path() . '/tasks' }}" method="POST">
+                        <form action="{{ $project->path('tasks') }}" method="POST">
                             @csrf
 
                             <input placeholder="Add a new task..." class="text-default bg-card w-full" name="body">

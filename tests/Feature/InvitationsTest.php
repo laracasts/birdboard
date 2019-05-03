@@ -19,7 +19,7 @@ class InvitationsTest extends TestCase
 
         $assertInvitationForbidden = function () use ($user, $project) {
             $this->actingAs($user)
-                ->post($project->path() . '/invitations')
+                ->post($project->path('invitations'))
                 ->assertStatus(403);
         };
 
@@ -38,7 +38,7 @@ class InvitationsTest extends TestCase
         $userToInvite = factory(User::class)->create();
 
         $this->actingAs($project->owner)
-            ->post($project->path() . '/invitations', [
+            ->post($project->path('invitations'), [
                 'email' => $userToInvite->email
             ])
             ->assertRedirect($project->path());
@@ -52,7 +52,7 @@ class InvitationsTest extends TestCase
         $project = ProjectFactory::create();
 
         $this->actingAs($project->owner)
-            ->post($project->path() . '/invitations', [
+            ->post($project->path('invitations'), [
                 'email' => 'notauser@example.com'
             ])
             ->assertSessionHasErrors([

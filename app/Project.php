@@ -18,11 +18,18 @@ class Project extends Model
     /**
      *  The path to the project.
      *
+     * @param string $add The additional path for the Project url
      * @return string
      */
-    public function path()
+    public function path($add = null)
     {
-        return "/projects/{$this->id}";
+        $path = "/projects/{$this->id}";
+
+        if ($add) {
+            $path .= "/$add";
+        }
+
+        return $path;
     }
 
     /**
