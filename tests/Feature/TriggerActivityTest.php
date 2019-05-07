@@ -3,9 +3,10 @@
 namespace Tests\Feature;
 
 use App\Task;
+use App\User;
+use Tests\TestCase;
 use Facades\Tests\Setup\ProjectFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
 class TriggerActivityTest extends TestCase
 {
@@ -60,6 +61,22 @@ class TriggerActivityTest extends TestCase
             $this->assertEquals('created_task', $activity->description);
             $this->assertInstanceOf(Task::class, $activity->subject);
             $this->assertEquals('Some task', $activity->subject->body);
+        });
+    }
+
+    /** @test */
+    function creating_a_new_task_as_a_collaborator()
+    {
+        $owner = factory(User::class)->create();
+
+        tap(ProjectFactory::ownedBy($owner)->create(), function($project) {
+            $collaborator = $this->signIn();
+
+            $project->invite($collaborator);
+
+            $project->addTask("Some Task");
+
+            $this->assertEquals($project->activity->last()->user_id, $collaborator->id);
         });
     }
 
