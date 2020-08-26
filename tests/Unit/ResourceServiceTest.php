@@ -72,34 +72,34 @@ class ResourceServiceTest extends TestCase
         $status->save();
     }
 
-    public function testAddMedia()
-    {
-        $folder = new Folder();
-        $folder->name = 'Resource';
-        $folder->resource = 1;
-        $folder->save(); 
-        $resourceService = new ResourceService();
-        $file = UploadedFile::fake()->image('file.jpg');
-        $request = array('column_name' => $file);
-        $result = $resourceService->addMedia($request, 'column_name');
-        $expected = '1';
-        $this->assertSame($expected, $result);
-        $this->assertDatabaseHas('media',[
-            'name' => 'file.jpg',
-        ]);
-    }
+    // public function testAddMedia()
+    // {
+    //     $folder = new Folder();
+    //     $folder->name = 'Resource';
+    //     $folder->resource = 1;
+    //     $folder->save(); 
+    //     $resourceService = new ResourceService();
+    //     $file = UploadedFile::fake()->image('file.jpg');
+    //     $request = array('column_name' => $file);
+    //     $result = $resourceService->addMedia($request, 'column_name');
+    //     $expected = '1';
+    //     $this->assertSame($expected, $result);
+    //     $this->assertDatabaseHas('media',[
+    //         'name' => 'file.jpg',
+    //     ]);
+    // }
 
-    public function testGetMediaUrl(){
-        $this->testAddMedia();
-        $resourceService = new ResourceService();
-        $result = $resourceService->getMediaUrl( 1 );
-        if(strpos($result, 'file.jpg') !== false){
-            $result = true;
-        }else{
-            $result = false;
-        }
-        $this->assertSame(true, $result);
-    }
+    // public function testGetMediaUrl(){
+    //     $this->testAddMedia();
+    //     $resourceService = new ResourceService();
+    //     $result = $resourceService->getMediaUrl( 1 );
+    //     if(strpos($result, 'file.jpg') !== false){
+    //         $result = true;
+    //     }else{
+    //         $result = false;
+    //     }
+    //     $this->assertSame(true, $result);
+    // }
 
     public function testGetFullIndexHeader(){
         $this->helperCreateFormField(1, 'test_1');

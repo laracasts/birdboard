@@ -130,22 +130,22 @@ class MediaTest extends TestCase
     }
 
 
-    public function testFileAdd(){
-        $user = factory('App\User')->states('admin')->create();
-        Role::create(['name' => 'admin']);
-        $user->assignRole('admin');
-        $file = UploadedFile::fake()->image('file.jpg');
-        $folder = new Folder();
-        $folder->name = 'test1';
-        $folder->save();
-        $response = $this->actingAs($user)->post('/media/file/store', [
-            'file' => $file,
-            'thisFolder' => $folder->id
-        ]);
-        $response->assertStatus(302);
-        $media = $folder->getMedia()->first();
-        $this->assertSame($media->name, 'file.jpg');
-    }
+    // public function testFileAdd(){
+    //     $user = factory('App\User')->states('admin')->create();
+    //     Role::create(['name' => 'admin']);
+    //     $user->assignRole('admin');
+    //     $file = UploadedFile::fake()->image('file.jpg');
+    //     $folder = new Folder();
+    //     $folder->name = 'test1';
+    //     $folder->save();
+    //     $response = $this->actingAs($user)->post('/media/file/store', [
+    //         'file' => $file,
+    //         'thisFolder' => $folder->id
+    //     ]);
+    //     $response->assertStatus(302);
+    //     $media = $folder->getMedia()->first();
+    //     $this->assertSame($media->name, 'file.jpg');
+    // }
 
     public function testFile(){
         $user = factory('App\User')->states('admin')->create();
