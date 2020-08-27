@@ -1,64 +1,66 @@
-@extends('layouts.app')
+@extends('dashboard.authBase')
 
 @section('content')
-    <form method="POST" action="{{ route('login') }}"
-          class="lg:w-1/2 lg:mx-auto bg-card py-12 px-16 rounded shadow"
-    >
-        @csrf
 
-        <h1 class="text-2xl font-normal mb-10 text-center">Login</h1>
-
-        <div class="field mb-6">
-            <label class="label text-sm mb-2 block" for="email">Email Address</label>
-
-            <div class="control">
-                <input id="email"
-                       type="email"
-                       class="input bg-transparent border border-muted-light rounded p-2 text-xs w-full{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                       name="email"
-                       value="{{ old('email') }}"
-                       required>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card-group">
+            <div class="card p-4">
+              <div class="card-body">
+                <h1>Login</h1>
+                <p class="text-muted">Sign In to your account</p>
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+                    <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <svg class="c-icon">
+                          <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-user"></use>
+                        </svg>
+                      </span>
+                    </div>
+                    <input class="form-control" type="text" placeholder="{{ __('E-Mail Address') }}" name="email" value="{{ old('email') }}" required autofocus>
+                    </div>
+                    <div class="input-group mb-4">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <svg class="c-icon">
+                          <use xlink:href="assets/icons/coreui/free-symbol-defs.svg#cui-lock-locked"></use>
+                        </svg>
+                      </span>
+                    </div>
+                    <input class="form-control" type="password" placeholder="{{ __('Password') }}" name="password" required>
+                    </div>
+                    <div class="row">
+                    <div class="col-6">
+                        <button class="btn btn-primary px-4" type="submit">{{ __('Login') }}</button>
+                    </div>
+                    </form>
+                    <div class="col-6 text-right">
+                        <a href="{{ route('password.request') }}" class="btn btn-link px-0">{{ __('Forgot Your Password?') }}</a>
+                    </div>
+                    </div>
+              </div>
             </div>
-        </div>
-
-        <div class="field mb-6">
-            <label class="label text-sm mb-2 block" for="password">Password</label>
-
-            <div class="control">
-                <input id="password"
-                       type="password"
-                       class="input bg-transparent border border-muted-light rounded p-2 text-xs w-full{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                       name="password"
-                       required>
+            <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
+              <div class="card-body text-center">
+                <div>
+                  <h2>Sign up</h2>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                  @if (Route::has('password.request'))
+                    <a href="{{ route('register') }}" class="btn btn-primary active mt-3">{{ __('Register') }}</a>
+                  @endif
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <div class="field mb-6">
-            <div class="control">
-                <input class="form-check-input"
-                       type="checkbox"
-                       name="remember"
-                       id="remember"
-                        {{ old('remember') ? 'checked' : '' }}>
+@endsection
 
-                <label class="text-sm" for="remember">
-                    Remember Me
-                </label>
-            </div>
-        </div>
+@section('javascript')
 
-        <div class="field mb-6">
-            <div class="col-md-8 offset-md-4">
-                <button type="submit" class="button mr-2">
-                    Login
-                </button>
-
-                @if (Route::has('password.request'))
-                    <a class="text-default text-sm" href="{{ route('password.request') }}">
-                        Forgot Your Password?
-                    </a>
-                @endif
-            </div>
-        </div>
-    </form>
 @endsection

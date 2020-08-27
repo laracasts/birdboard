@@ -1,4 +1,4 @@
-@extends ('layouts.app')
+@extends ('dashboard.base')
 
 @section('content')
     <header class="flex items-center mb-3 pb-4">
