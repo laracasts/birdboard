@@ -16,10 +16,10 @@ class _aCoreUITest extends TestCase
         parent::setUp();
     }
 
-    public function testHomepage(){
-        $response = $this->get( '/' );
-        $response->assertStatus(200);
-    }
+    // public function testHomepage(){
+    //     $response = $this->get( '/' );
+    //     $response->assertStatus(200);
+    // }
 
     public function testColors(){
         $response = $this->get( '/colors' );
