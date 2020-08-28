@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'get.projects']], function () {
     Route::resource('projects', 'ProjectsController');
 
     Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
@@ -19,11 +19,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/projects/{project}/invitations', 'ProjectInvitationsController@store');
 
     Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::get('/', 'StartController@index');
+    
 });
 
-
 Route::group(['middleware' => ['get.menu']], function () {
-    Route::get('/', 'StartController@index');
+    
 
     Route::group(['middleware' => ['role:user']], function () {
         Route::get('/colors', function () {     return view('dashboard.colors'); });

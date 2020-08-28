@@ -13,7 +13,6 @@ class StartController extends Controller
      */
     public function index()
     {
-        $projects = auth()->user()->accessibleProjects();
-        return view('dashboard.homepage', compact('projects'));
+        return view('dashboard.homepage');
     }
 }
